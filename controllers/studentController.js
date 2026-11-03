@@ -1,9 +1,9 @@
 import connection from '../utils/db-connection.js';
 const addEntries=(req,res)=>{
-    const {email,name}=req.body;
-    const InsertQuery=`INSERT INTO Students(name,email) VALUES(?,?)`;
+    const {email,name,age}=req.body;
+    const InsertQuery=`INSERT INTO Students(name,email,age) VALUES(?,?,?)`;
 
-    connection.execute(InsertQuery,[name,email],(err)=>{
+    connection.execute(InsertQuery,[name,email,age],(err)=>{
         if(err){
             console.log(err);
             res.status(500).send(err.message);
@@ -60,4 +60,33 @@ const deleteEntries=(req,res)=>{
     })
 }
 
-export  { addEntries, updateEntries, deleteEntries };
+const getAllEntries=(req,res)=>{
+    const selectQuery=`SELECT * FROM Students`;
+    connection.execute(selectQuery,(err,results)=>{
+        if(err){
+            res.status(500).send(err.message);
+            connection.end();
+            return;
+        }
+        res.status(200).send(results);
+    })
+}
+
+const getEntryById=(req,res)=>{
+    const {id}=req.params;
+    const selectQuery=`SELECT * FROM Students WHERE id=?`;
+    connection.execute(selectQuery,[id],(err,results)=>{
+        if(err){
+            res.status(500).send(err.message);
+            connection.end();
+            return;
+        }
+        if(results.length===0){
+            res.status(404).send(`student with id ${id} not found`);
+            return;
+        }
+        res.status(200).send(results[0]);
+    })
+}
+
+export  { addEntries, updateEntries, deleteEntries, getAllEntries, getEntryById };

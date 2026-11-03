@@ -15,6 +15,14 @@ connection.connect((err)=>{
     console.log('connected to database');
 
     const queries = [
+    
+
+    `CREATE TABLE IF NOT EXISTS Students  (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        age INT NOT NULL
+    )`,
     `CREATE TABLE IF NOT EXISTS Users(
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(20),
