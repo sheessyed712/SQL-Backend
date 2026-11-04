@@ -12,6 +12,8 @@ import appointmentRoutes from './routes/appointmentRoutes.js';
 import User from './models/user.js';
 import identity from './models/identityCard.js';
 import "./models/association.js"
+
+import courseRoutes from "./routes/courseRoutes.js"
 const app=express();
 
 app.use(express.json());
@@ -22,6 +24,8 @@ app.get('/',(req,res)=>{
 
 
 app.use("/students",studentRoutes);
+
+app.use("/courses",courseRoutes);
 
 // User route
 app.use('/users', userRoutes);
