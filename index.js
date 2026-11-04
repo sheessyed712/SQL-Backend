@@ -7,6 +7,9 @@ import busRoutes from './routes/busRoutes.js';
 import Students from './models/students.js';    
 import Users from './models/users.js';
 import Buses from './models/buses.js';
+
+import appointmentRoutes from './routes/appointmentRoutes.js';
+import User from './models/user.js';
 const app=express();
 
 app.use(express.json());
@@ -22,6 +25,9 @@ app.use('/users', userRoutes);
 
 //Bus route
 app.use('/buses', busRoutes);
+    
+// Appointment route
+app.use('/appointments', appointmentRoutes);
 
 db.sync({force:true})
 .then(()=>{
