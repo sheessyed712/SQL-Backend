@@ -4,7 +4,9 @@ import studentRoutes from './routes/studentRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import busRoutes from './routes/busRoutes.js';
 
-import Students from './models/students.js';
+import Students from './models/students.js';    
+import Users from './models/users.js';
+import Buses from './models/buses.js';
 const app=express();
 
 app.use(express.json());

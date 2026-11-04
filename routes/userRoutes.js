@@ -3,8 +3,8 @@ import {addUser,getUsers} from '../controllers/userController.js';
 
 const router=express.Router();
 
-router.post("/add",addUser);
-router.get("/get",getUsers);
+router.post("/",addUser);
+router.get("/",getUsers);
 
 
 export default router;
