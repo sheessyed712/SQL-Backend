@@ -10,6 +10,8 @@ import Buses from './models/buses.js';
 
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import User from './models/user.js';
+import identity from './models/identityCard.js';
+import "./models/association.js"
 const app=express();
 
 app.use(express.json());
@@ -17,6 +19,7 @@ app.use(express.json());
 app.get('/',(req,res)=>{
     res.send('hello darling')
 })
+
 
 app.use("/students",studentRoutes);
 

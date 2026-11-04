@@ -1,5 +1,6 @@
 import connection from '../utils/db-connection.js';
 import Students from '../models/students.js';
+import identity from '../models/identityCard.js';
 const addEntries=async (req,res)=>{
     
     try {
@@ -131,4 +132,20 @@ const getEntryById=(req,res)=>{
     })
 }
 
-export  { addEntries, updateEntries, deleteEntries, getAllEntries, getEntryById };
+const addingValuesToStudentandIdCard=async(req,res)=>{
+    //"student":{name:"john"},
+    //"identityCard":{cardNumber:"1234567890"}
+    try{
+        const student=await student.create(req.body.student);
+        const IDCard=await identity.create(
+            {...req.body.identityCard,
+            StudentId:student.id}
+        );
+        res.status(200).send(student,IDCard);
+    }
+    catch(error){
+        res.status(500).send(error.message);
+    }
+
+}
+export  { addEntries, updateEntries, deleteEntries, getAllEntries, getEntryById ,addingValuesToStudentandIdCard};
