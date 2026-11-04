@@ -13,6 +13,9 @@ import User from './models/user.js';
 import identity from './models/identityCard.js';
 import "./models/association.js"
 
+import "./models/bookingAssociations.js"
+import bookingRoutes from "./routes/bookingRoutes.js";
+
 import courseRoutes from "./routes/courseRoutes.js"
 const app=express();
 
@@ -22,7 +25,7 @@ app.get('/',(req,res)=>{
     res.send('hello darling')
 })
 
-
+app.use("/bookings",bookingRoutes);
 app.use("/students",studentRoutes);
 
 app.use("/courses",courseRoutes);
